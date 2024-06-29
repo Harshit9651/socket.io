@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <input type="text" id="message" name="" placeholder="enter somthing " id="">
+    <button id="sendbtn">send chet</button>
+    
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const sendbtn = document.getElementById('sendbtn');
+    const messageinput = document.getElementById('message')
+    socket.on('send-all-to-user',(message)=>{
+        console.log(message)
+    })
+    sendbtn.addEventListener('click',e=>{
+        const message = messageinput.value;
+        console.log(message)
+        socket.emit('user-message',message);
+    })
+</script>
+</html>
